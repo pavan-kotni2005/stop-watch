@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{
+            text-align: center;
+            color:rgb(1, 135, 139);
+            font-size: 55px;
+        }
+        .stop{
+            text-align: center;
+            padding: 20px;
+            word-spacing: 40px;
+            
+        }
+        button{
+            padding: 15px;
+            font-size: 20px;
+            border-radius: 50px;
+            background-color: rgb(251, 250, 179);
+            color: brown;
+        }
+        button:hover{
+            background-color:darkseagreen;
+        }
+        body{
+            background-color: rgba(2, 68, 41, 0.747);
+        }
+        input{
+            margin-left: 37%;
+            width: 200px;
+            font-size: 25px;
+            height: 40px;
+            padding: 2px;
+            margin-bottom: 20px;
+            border-radius: 100px;
+        }
+        .hi{
+            background-color: aqua;
+            height: 300px;
+            padding: 50px;
+            margin-top: 100px;
+            margin-left:22%;
+            margin-right: 20%;
+            border-radius: 100px ;
+        }
+    </style>
+</head>
+<body>
+    <div class="hi">
+    <h1>STOP WATCH</h1>
+    <input type="text" step="1" id="result" value="00:00:00">
+    <div class="stop">
+        <button onclick="start()">START</button>
+        <button onclick="stop()">STOP</button>
+        <button onclick="reset()">RESET</button>
+    </div>
+</div>
+    <script>
+         let hours= 0,minutes=0,seconds=0,timer;
+         let running=false;
+         function start(){
+            if(!running)
+         {
+            running=true;
+            stopwatch();
+         }
+         }
+         function stopwatch(){
+            if(running)
+         {
+            seconds++;
+         }
+         if(seconds==60)
+         {
+            seconds=0;
+            minutes++;
+         }
+         if(minutes==60)
+         {
+            minutes=0;
+            hours++;
+         }
+         display();
+         timer= setTimeout(stopwatch,1000);
+         }
+         function stop()
+         {
+            running=false;
+            clearTimeout(timer);
+            display();
+         }
+         function reset()
+         {
+            running=false;
+            clearTimeout(timer);
+            minutes=0;
+            seconds=0;
+            hours=0;
+            display();
+         }
+         function display(){
+            document.getElementById('result').value=`${String(hours).padStart(2,'0')}:${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')}`;
+         }
+    </script>
+</body>
+</html>
